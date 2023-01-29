@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/startFragment">
+
+    <fragment
+        android:id="@+id/startFragment"
+        android:name="com.manishsputnikcorporation.pizza.ui.StartFragment"
+        android:label="@string/app_name">
+        <action
+            android:id="@+id/action_startFragment_to_pizzaFragment"
+            app:destination="@id/pizzaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pizzaFragment"
+        android:name="com.manishsputnikcorporation.pizza.ui.PizzaFragment"
+        android:label="@string/choose_pizza">
+        <action
+            android:id="@+id/action_pizzaFragment_to_startFragment"
+            app:destination="@id/startFragment" />
+        <action
+            android:id="@+id/action_pizzaFragment_to_pickupFragment"
+            app:destination="@id/pickupFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pickupFragment"
+        android:name="com.manishsputnikcorporation.pizza.ui.PickupFragment"
+        android:label="@string/choose_pickup_date">
+        <action
+            android:id="@+id/action_pickupFragment_to_pizzaFragment"
+            app:destination="@id/pizzaFragment" />
+        <action
+            android:id="@+id/action_pickupFragment_to_startFragment"
+            app:destination="@id/startFragment" />
+        <action
+            android:id="@+id/action_pickupFragment_to_summaryFragment"
+            app:destination="@id/summaryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/summaryFragment"
+        android:name="com.manishsputnikcorporation.pizza.ui.SummaryFragment"
+        android:label="@string/order_summary">
+        <action
+            android:id="@+id/action_summaryFragment_to_pickupFragment"
+            app:destination="@id/pickupFragment" />
+        <action
+            android:id="@+id/action_summaryFragment_to_startFragment"
+            app:destination="@id/startFragment" />
+    </fragment>
+</navigation>
