@@ -7,8 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.manishsputnikcorporation.pizza.utils.extensions.showSnackBar
 import com.manishsputnikcorporation.pizza.R
 import com.manishsputnikcorporation.pizza.databinding.FragmentPizzaBinding
+import com.manishsputnikcorporation.pizza.ui.adapter.MinusButtonListener
+import com.manishsputnikcorporation.pizza.ui.adapter.PizzaListAdapter
+import com.manishsputnikcorporation.pizza.ui.adapter.PlusButtonListener
+import com.manishsputnikcorporation.pizza.ui.model.PizzaLimit.*
 import com.manishsputnikcorporation.pizza.ui.model.OrderViewModel
 
 /**
@@ -36,7 +41,11 @@ class PizzaFragment : Fragment() {
             lifecycleOwner = viewLifecycleOwner
             viewModel = sharedViewModel
             pizzaFragment = this@PizzaFragment
+
         }
+
+        setupObservers()
+        setupListeners()
     }
 
     override fun onDestroyView() {
@@ -44,12 +53,39 @@ class PizzaFragment : Fragment() {
         binding = null
     }
 
+    /**
+     *
+     */
     fun cancelOrder() {
-        // TODO: sharedViewModel.resetOrder()
+        sharedViewModel.resetOrder()
         findNavController().navigate(R.id.action_pizzaFragment_to_startFragment)
     }
 
+    /**
+     * Navigate to the next screen to choose pickup date.
+     */
     fun goToNextScreen() {
-        findNavController().navigate(R.id.action_pizzaFragment_to_pickupFragment)
+        if (sharedViewModel.areAllPizzasSelected()) findNavController().navigate(R.id.action_pizzaFragment_to_pickupFragment)
+        else showSnackBar(getString(R.string.pizza_selection_requirement))
+    }
+
+    private fun setupObservers() {
+        sharedViewModel.status.observe(viewLifecycleOwner) { status ->
+            showSnackBar(when (status.pizzaLimit) {
+                LOWER_LIMIT -> getString(R.string.lower_limit_reached, status.pizzaName)
+                UPPER_LIMIT -> getString(R.string.upper_limit_reached)
+            })
+        }
+    }
+
+    private fun setupListeners() {
+        binding?.pizzaRecyclerview?.adapter = PizzaListAdapter(
+            minusClickListener = MinusButtonListener { pizzaName ->
+                sharedViewModel.decreasePizza(pizzaName)
+            },
+            plusClickListener = PlusButtonListener { pizzaName ->
+                sharedViewModel.increasePizza(pizzaName)
+            }
+        )
     }
 }
