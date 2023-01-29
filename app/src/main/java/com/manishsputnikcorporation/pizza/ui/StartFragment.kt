@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.manishsputnikcorporation.pizza.utils.extensions.toPizzaList
 import com.manishsputnikcorporation.pizza.R
+import com.manishsputnikcorporation.pizza.data.Pizzas
 import com.manishsputnikcorporation.pizza.databinding.FragmentStartBinding
 import com.manishsputnikcorporation.pizza.ui.model.OrderViewModel
 
@@ -39,7 +41,17 @@ class StartFragment : Fragment() {
         binding = null
     }
 
-    fun orderPizza() {
+    /**
+     * Start an order with the desired quantity of pizzas and navigate to the next screen.
+     */
+    fun orderPizza(quantity: Int) {
+        with(sharedViewModel) {
+            val lastQuantitySelected = sharedViewModel.getQuantityOrZero()
+            setQuantity(quantity)
+            val defaultPizzas = Pizzas.pizzas.toPizzaList(this@StartFragment, quantity)
+            if (hasNoPizzas() || quantity != lastQuantitySelected) setPizzas(defaultPizzas)
+        }
+
         findNavController().navigate(R.id.action_startFragment_to_pizzaFragment)
     }
 }
