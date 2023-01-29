@@ -1,6 +1,47 @@
 <resources>
     <string name="app_name">Pizza</string>
-    <string name="choose_pizza">Choose Flavor</string>
+    <string name="subtotal_price">Subtotal %s</string>
+    <string name="cancel">Cancel</string>
+    <string name="next">Next</string>
+
+    <!-- Start screen -->
+    <string name="order_pizzas">Order Pizzas</string>
+    <string name="one_pizza">One Pizza</string>
+    <string name="six_pizzas">Six Pizzas</string>
+    <string name="twelve_pizzas">Twelve Pizzas</string>
+
+    <!-- Pizza screen -->
+    <string name="choose_pizza">Choose Pizza</string>
+    <string name="barbeque_pizza">Barbeque</string>
+    <string name="formaggio_pizza">Formaggio</string>
+    <string name="carbonara_pizza">Carbonara</string>
+    <string name="hawaiian_pizza">Hawaiian</string>
+    <string name="pepperoni_pizza">Pepperoni</string>
+    <string name="steak_house_pizza">Steak House</string>
+    <string name="minus_button">-</string>
+    <string name="plus_button">+</string>
+    <string name="lower_limit_reached">You have reached the minimum number of pizzas allowed for %s</string>
+    <string name="upper_limit_reached">You have reached the maximum number of pizzas allowed</string>
+    <string name="pizza_selection_requirement">You need to reach the number of pizzas you requested</string>
+
+    <!-- Pickup screen -->
     <string name="choose_pickup_date">Choose Pickup Date</string>
+
+    <!-- Summary screen -->
     <string name="order_summary">Order Summary</string>
+    <string name="quantity">Quantity</string>
+    <plurals name="pizzas">
+        <item quantity="one">%d pizza</item>
+        <item quantity="other">%d pizzas</item>
+    </plurals>
+    <string name="pizza_list">- %1$d x %2$s</string>
+    <string name="pickup_date">Pickup date</string>
+    <string name="name">Name</string>
+    <string name="name_hint">Introduce your name</string>
+    <string name="total_price">Total %s</string>
+    <string name="send">Send Order to Another App</string>
+    <string name="new_pizza_order">New Pizza Order</string>
+    <string name="order_details">Name: %1$s \n %2$s \n %3$s \nPickup date: %4$s \n
+        Total: %5$s \n\n Thank you!</string>
+
 </resources>
