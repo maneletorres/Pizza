@@ -30,6 +30,7 @@
     <!-- Summary screen -->
     <string name="order_summary">Order Summary</string>
     <string name="quantity">Quantity</string>
+    <string name="pizza">Pizza</string>
     <plurals name="pizzas">
         <item quantity="one">%d pizza</item>
         <item quantity="other">%d pizzas</item>
