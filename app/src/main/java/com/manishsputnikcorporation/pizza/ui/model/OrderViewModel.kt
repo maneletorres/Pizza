@@ -31,8 +31,8 @@ class OrderViewModel : ViewModel() {
         NumberFormat.getCurrencyInstance().format(it)
     }
 
-    private val _name = MutableLiveData<String?>()
-    val name: LiveData<String?> get() = _name
+    private val _name = MutableLiveData<String>()
+    val name: LiveData<String> get() = _name
 
     private val _status = MutableLiveData<Status>()
     val status: LiveData<Status> = _status
@@ -62,8 +62,8 @@ class OrderViewModel : ViewModel() {
         updatePrice()
     }
 
-    fun setName(name: CharSequence?) {
-        _name.value = name?.toString() ?: ""
+    fun setName(name: String) {
+        _name.value = name
     }
 
     fun hasNoPizzas(): Boolean = _pizzas.value.isNullOrEmpty()
