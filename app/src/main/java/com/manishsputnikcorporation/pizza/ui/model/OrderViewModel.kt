@@ -85,6 +85,7 @@ class OrderViewModel : ViewModel() {
         _pizzas.value = mutableListOf()
         _date.value = dateOptions[0]
         _price.value = 0.0
+        _name.value = ""
     }
 
     private fun updatePrice() {

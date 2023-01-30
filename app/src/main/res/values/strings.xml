@@ -43,9 +43,9 @@
     <string name="send">Send Order to Another App</string>
     <string name="new_pizza_order">New Pizza Order</string>
     <plurals name="order_details">
-        <item quantity="one">Name: %1$s \nPizza: %2$s \nPickup date: %3$s \nTotal: %4$s
+        <item quantity="one">Name: %1$s \nPizza: %2$d x %3$s \nPickup date: %4$s \nTotal: %5$s
             \n\nThank you!</item>
-        <item quantity="other">Name: %1$s \nPizzas: \n %2$s \nPickup date: %3$s \nTotal: %4$s
+        <item quantity="other">Name: %1$s \nPizzas: \n %3$s \nPickup date: %4$s \nTotal: %5$s
             \n\nThank you!</item>
     </plurals>
 

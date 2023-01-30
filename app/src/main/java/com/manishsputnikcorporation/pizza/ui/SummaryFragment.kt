@@ -14,6 +14,7 @@ import com.manishsputnikcorporation.pizza.R
 import com.manishsputnikcorporation.pizza.databinding.FragmentSummaryBinding
 import com.manishsputnikcorporation.pizza.ui.model.OrderViewModel
 import com.manishsputnikcorporation.pizza.utils.extensions.toFormattedPizzaList
+import com.manishsputnikcorporation.pizza.utils.extensions.toPizzaTypesNumber
 import com.manishsputnikcorporation.pizza.utils.extensions.toPizzasNumber
 
 /**
@@ -67,8 +68,9 @@ class SummaryFragment : Fragment() {
             val pizzas = pizzas.value
             orderSummary = resources.getQuantityString(
                 R.plurals.order_details,
-                pizzas.toPizzasNumber(),
+                pizzas.toPizzaTypesNumber(),
                 name.value ?: "",
+                pizzas.toPizzasNumber(),
                 pizzas.toFormattedPizzaList(resources),
                 date.value,
                 price.value
