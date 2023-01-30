@@ -9,23 +9,21 @@ fun MutableList<Pizza>?.toPizzasNumber() = this?.sumOf { it.quantity } ?: 0
 
 fun MutableList<Pizza>?.filterPizza() = this?.filter { it.quantity > 0 }
 
-fun MutableList<Pizza>?.toPizzasLabel(resources: Resources): String {
-    val numberOfPizzas = toPizzasNumber()
-    return resources.getQuantityString(R.plurals.pizzas, numberOfPizzas, numberOfPizzas)
-}
-
 // TODO: enhance this method with default function extensions.
 fun MutableList<Pizza>?.toFormattedPizzaList(resources: Resources): String {
-    var pizzaFormattedList = ""
-    this.filterPizza()?.onEachIndexed { index, pizza ->
-        if (index != 0) pizzaFormattedList += "\n"
-        pizzaFormattedList += resources.getString(
-            R.string.pizza_list,
-            pizza.quantity,
-            pizza.name
-        )
-    }
-    return pizzaFormattedList
+    val pizzaTypes = this?.count { it.quantity > 0 } ?: 0
+    return if (pizzaTypes > 1) {
+        var pizzaFormattedList = ""
+        filterPizza()?.onEachIndexed { index, pizza ->
+            if (index != 0) pizzaFormattedList += "\n"
+            pizzaFormattedList += resources.getString(
+                R.string.pizza_list,
+                pizza.quantity,
+                pizza.name
+            )
+        }
+        pizzaFormattedList
+    } else this?.get(0)?.name ?: ""
 }
 
 // TODO: enhance this method with default function extensions.
