@@ -81,7 +81,11 @@ class SummaryFragment : Fragment() {
             .putExtra(Intent.EXTRA_TEXT, orderSummary)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (activity?.packageManager?.resolveActivity(intent, ResolveInfoFlags.of(0)) != null) startActivity(intent)
+            if (activity?.packageManager?.resolveActivity(
+                    intent,
+                    ResolveInfoFlags.of(0)
+                ) != null
+            ) startActivity(intent)
         } else {
             if (activity?.packageManager?.resolveActivity(intent, 0) != null) startActivity(intent)
         }

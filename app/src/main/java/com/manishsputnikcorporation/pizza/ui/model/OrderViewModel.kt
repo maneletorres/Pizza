@@ -115,8 +115,7 @@ class OrderViewModel : ViewModel() {
                 if (currentPizza.quantity > 0) setPizza(pizzas, currentPizza, Operation.DEC)
                 else _status.value = Status(PizzaLimit.LOWER_LIMIT, pizzaName)
             }
-        }
-        else _status.value = Status(PizzaLimit.LOWER_LIMIT, pizzaName)
+        } else _status.value = Status(PizzaLimit.LOWER_LIMIT, pizzaName)
     }
 
     private fun setPizza(pizzas: List<Pizza>, currentPizza: Pizza, operation: Operation) {

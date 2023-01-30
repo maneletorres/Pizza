@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Text Appearance Subtitle1 style -->
-    <style name="TextAppearance.Pizza.Subtitle1"
-        parent="TextAppearance.MaterialComponents.Subtitle1">
+    <style name="TextAppearance.Pizza.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
         <item name="android:textSize">18sp</item>
     </style>
 

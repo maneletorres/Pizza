@@ -24,6 +24,7 @@ fun bindPizzasLabel(txtView: TextView, pizzas: MutableList<Pizza>?) {
         text = resources.getQuantityString(R.plurals.pizzas, pizzas.toPizzasNumber())
     }
 }
+
 @BindingAdapter("pizzaFormatted")
 fun bindPizzas(txtView: TextView, pizzas: MutableList<Pizza>?) {
     with(txtView) {

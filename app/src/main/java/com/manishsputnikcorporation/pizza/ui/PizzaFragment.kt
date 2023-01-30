@@ -7,14 +7,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.manishsputnikcorporation.pizza.utils.extensions.showSnackBar
 import com.manishsputnikcorporation.pizza.R
 import com.manishsputnikcorporation.pizza.databinding.FragmentPizzaBinding
 import com.manishsputnikcorporation.pizza.ui.adapter.MinusButtonListener
 import com.manishsputnikcorporation.pizza.ui.adapter.PizzaListAdapter
 import com.manishsputnikcorporation.pizza.ui.adapter.PlusButtonListener
-import com.manishsputnikcorporation.pizza.ui.model.PizzaLimit.*
 import com.manishsputnikcorporation.pizza.ui.model.OrderViewModel
+import com.manishsputnikcorporation.pizza.ui.model.PizzaLimit.LOWER_LIMIT
+import com.manishsputnikcorporation.pizza.ui.model.PizzaLimit.UPPER_LIMIT
+import com.manishsputnikcorporation.pizza.utils.extensions.showSnackBar
 
 /**
  * [PizzaFragment] allows a user to choose a pizza for the order.
@@ -71,10 +72,12 @@ class PizzaFragment : Fragment() {
 
     private fun setupObservers() {
         sharedViewModel.status.observe(viewLifecycleOwner) { status ->
-            showSnackBar(when (status.pizzaLimit) {
-                LOWER_LIMIT -> getString(R.string.lower_limit_reached, status.pizzaName)
-                UPPER_LIMIT -> getString(R.string.upper_limit_reached)
-            })
+            showSnackBar(
+                when (status.pizzaLimit) {
+                    LOWER_LIMIT -> getString(R.string.lower_limit_reached, status.pizzaName)
+                    UPPER_LIMIT -> getString(R.string.upper_limit_reached)
+                }
+            )
         }
     }
 
