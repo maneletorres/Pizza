@@ -1,6 +1,8 @@
 package com.manishsputnikcorporation.pizza.ui
 
 import android.content.Intent
+import android.content.pm.PackageManager.ResolveInfoFlags
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -53,7 +55,7 @@ class SummaryFragment : Fragment() {
      */
     fun cancelOrder() {
         sharedViewModel.resetOrder()
-        findNavController().navigate(R.id.action_pickupFragment_to_startFragment)
+        findNavController().navigate(R.id.action_summaryFragment_to_startFragment)
     }
 
     /**
@@ -65,7 +67,7 @@ class SummaryFragment : Fragment() {
             val pizzas = pizzas.value
             orderSummary = getString(
                 R.string.order_details,
-                name.value,
+                name.value ?: "",
                 pizzas.toPizzasLabel(resources),
                 pizzas.toFormattedPizzaList(resources),
                 date.value,
@@ -78,6 +80,10 @@ class SummaryFragment : Fragment() {
             .putExtra(Intent.EXTRA_SUBJECT, getString(R.string.new_pizza_order))
             .putExtra(Intent.EXTRA_TEXT, orderSummary)
 
-        if (activity?.packageManager?.resolveActivity(intent, 0) != null) startActivity(intent)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (activity?.packageManager?.resolveActivity(intent, ResolveInfoFlags.of(0)) != null) startActivity(intent)
+        } else {
+            if (activity?.packageManager?.resolveActivity(intent, 0) != null) startActivity(intent)
+        }
     }
 }
