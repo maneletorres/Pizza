@@ -125,7 +125,7 @@
                         android:autofillHints="name"
                         android:hint="@string/name_hint"
                         android:inputType="text"
-                        android:onTextChanged="@{(text, start, before, count) -> viewModel.setName(text.toString())}"
+                        android:onTextChanged="@{(text, start, before, count) -> viewModel.setName(text)}"
                         tools:text="Manuel Espinosa Torres" />
 
                 </com.google.android.material.textfield.TextInputLayout>
