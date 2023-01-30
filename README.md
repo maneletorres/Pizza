@@ -4,6 +4,7 @@
 - [Introduction](#introduction)
 - [Architectures](#architectures)
 - [Next steps](#next-steps)
+- [Screenshots](#screenshots)
 
 ## Introduction
 Pizza is a simple pizza delivery application built entirely in Kotlin for Android, which follows the conventions and good practices, applying the most recent methodologies and technologies on the market, focused on being updated and improved over time.
@@ -35,3 +36,4 @@ Pizza is a simple pizza delivery application built entirely in Kotlin for Androi
 - Others...
 
 ## Screenshots
+<img src="https://user-images.githubusercontent.com/33102786/215556885-0b659344-06de-4d70-8ea2-e7b6dde8dc31.jpg" width="200">
