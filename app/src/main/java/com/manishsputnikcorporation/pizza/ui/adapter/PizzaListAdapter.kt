@@ -35,8 +35,8 @@ class PizzaListAdapter(
     }
 
     override fun onBindViewHolder(holder: PizzasViewHolder, position: Int) {
-        val Pizza = getItem(position)
-        holder.bind(minusClickListener, plusClickListener, Pizza)
+        val pizza = getItem(position)
+        holder.bind(minusClickListener, plusClickListener, pizza)
     }
 
     class PizzasViewHolder(private var binding: PizzaItemBinding) :

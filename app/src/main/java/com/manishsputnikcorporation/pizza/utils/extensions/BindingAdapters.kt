@@ -5,8 +5,6 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.manishsputnikcorporation.pizza.domain.Pizza
 import com.manishsputnikcorporation.pizza.ui.adapter.PizzaListAdapter
-import com.manishsputnikcorporation.pizza.utils.extensions.toPizzasLabel
-import com.manishsputnikcorporation.pizza.utils.extensions.toFormattedPizzaList
 
 @BindingAdapter("listData")
 fun bindRecyclerView(recyclerView: RecyclerView, data: List<Pizza>?) {
@@ -25,7 +23,6 @@ fun bindPizzasLabel(txtView: TextView, pizzas: MutableList<Pizza>?) {
         text = pizzas.toPizzasLabel(resources)
     }
 }
-
 @BindingAdapter("pizzaFormatted")
 fun bindPizzas(txtView: TextView, pizzas: MutableList<Pizza>?) {
     with(txtView) {
