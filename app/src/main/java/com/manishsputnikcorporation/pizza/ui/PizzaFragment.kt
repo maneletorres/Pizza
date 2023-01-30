@@ -54,22 +54,6 @@ class PizzaFragment : Fragment() {
         binding = null
     }
 
-    /**
-     *
-     */
-    fun cancelOrder() {
-        sharedViewModel.resetOrder()
-        findNavController().navigate(R.id.action_pizzaFragment_to_startFragment)
-    }
-
-    /**
-     * Navigate to the next screen to choose pickup date.
-     */
-    fun goToNextScreen() {
-        if (sharedViewModel.areAllPizzasSelected()) findNavController().navigate(R.id.action_pizzaFragment_to_pickupFragment)
-        else showSnackBar(getString(R.string.pizza_selection_requirement))
-    }
-
     private fun setupObservers() {
         sharedViewModel.status.observe(viewLifecycleOwner) { status ->
             showSnackBar(
@@ -90,5 +74,21 @@ class PizzaFragment : Fragment() {
                 sharedViewModel.increasePizza(pizzaName)
             }
         )
+    }
+
+    /**
+     * Navigate to the first screen to restart an order.
+     */
+    fun cancelOrder() {
+        sharedViewModel.resetOrder()
+        findNavController().navigate(R.id.action_pizzaFragment_to_startFragment)
+    }
+
+    /**
+     * Navigate to the next screen to choose pickup date.
+     */
+    fun goToNextScreen() {
+        if (sharedViewModel.areAllPizzasSelected()) findNavController().navigate(R.id.action_pizzaFragment_to_pickupFragment)
+        else showSnackBar(getString(R.string.pizza_selection_requirement))
     }
 }

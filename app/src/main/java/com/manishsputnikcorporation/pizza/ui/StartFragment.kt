@@ -14,7 +14,7 @@ import com.manishsputnikcorporation.pizza.ui.model.OrderViewModel
 import com.manishsputnikcorporation.pizza.utils.extensions.toPizzaList
 
 /**
- * This is the first screen of the Pizza app. The user can choose hoy many pizzas to order.
+ * This is the first screen of the Pizza app. The user can choose how many pizzas to order.
  */
 class StartFragment : Fragment() {
 

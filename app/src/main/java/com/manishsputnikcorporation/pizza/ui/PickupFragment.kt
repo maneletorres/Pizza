@@ -45,7 +45,7 @@ class PickupFragment : Fragment() {
     }
 
     /**
-     *
+     * Navigate to the first screen to restart an order.
      */
     fun cancelOrder() {
         sharedViewModel.resetOrder()
