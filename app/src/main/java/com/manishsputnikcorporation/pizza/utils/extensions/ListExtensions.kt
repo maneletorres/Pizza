@@ -5,8 +5,12 @@ import androidx.fragment.app.Fragment
 import com.manishsputnikcorporation.pizza.R
 import com.manishsputnikcorporation.pizza.domain.Pizza
 
+fun MutableList<Pizza>?.toPizzasNumber() = this?.sumOf { it.quantity } ?: 0
+
+fun MutableList<Pizza>?.filterPizza() = this?.filter { it.quantity > 0 }
+
 fun MutableList<Pizza>?.toPizzasLabel(resources: Resources): String {
-    val numberOfPizzas = this?.sumOf { it.quantity } ?: 0
+    val numberOfPizzas = toPizzasNumber()
     return resources.getQuantityString(R.plurals.pizzas, numberOfPizzas, numberOfPizzas)
 }
 
@@ -23,8 +27,6 @@ fun MutableList<Pizza>?.toFormattedPizzaList(resources: Resources): String {
     }
     return pizzaFormattedList
 }
-
-fun MutableList<Pizza>?.filterPizza() = this?.filter { it.quantity > 0 }
 
 // TODO: enhance this method with default function extensions.
 fun List<Int>.toPizzaList(fragment: Fragment, quantity: Int): MutableList<Pizza> {

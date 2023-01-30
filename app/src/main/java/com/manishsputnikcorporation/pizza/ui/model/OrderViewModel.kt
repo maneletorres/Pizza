@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.manishsputnikcorporation.pizza.domain.Pizza
+import com.manishsputnikcorporation.pizza.utils.extensions.toPizzasNumber
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -92,7 +93,7 @@ class OrderViewModel : ViewModel() {
         _price.value = calculatedPrice
     }
 
-    private fun getSelectedPizzas() = _pizzas.value?.sumOf { it.quantity } ?: 0
+    private fun getSelectedPizzas() = _pizzas.value.toPizzasNumber()
 
     fun areAllPizzasSelected() = getSelectedPizzas() == getQuantityOrZero()
 

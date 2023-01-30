@@ -14,7 +14,7 @@ import com.manishsputnikcorporation.pizza.R
 import com.manishsputnikcorporation.pizza.databinding.FragmentSummaryBinding
 import com.manishsputnikcorporation.pizza.ui.model.OrderViewModel
 import com.manishsputnikcorporation.pizza.utils.extensions.toFormattedPizzaList
-import com.manishsputnikcorporation.pizza.utils.extensions.toPizzasLabel
+import com.manishsputnikcorporation.pizza.utils.extensions.toPizzasNumber
 
 /**
  * [SummaryFragment] contains a summary of the order details with a button to share the order
@@ -68,7 +68,7 @@ class SummaryFragment : Fragment() {
             orderSummary = getString(
                 R.string.order_details,
                 name.value ?: "",
-                pizzas.toPizzasLabel(resources),
+                resources.getQuantityString(R.plurals.email_pizza_label, pizzas.toPizzasNumber()),
                 pizzas.toFormattedPizzaList(resources),
                 date.value,
                 price.value

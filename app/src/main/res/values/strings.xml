@@ -44,5 +44,10 @@
     <string name="new_pizza_order">New Pizza Order</string>
     <string name="order_details">Name: %1$s \n %2$s \n %3$s \nPickup date: %4$s \n
         Total: %5$s \n\n Thank you!</string>
+    <plurals name="email_pizza_label">
+        <item quantity="zero">Pizza:</item>
+        <item quantity="one">Pizza:</item>
+        <item quantity="other">Pizzas:</item>
+    </plurals>
 
 </resources>
