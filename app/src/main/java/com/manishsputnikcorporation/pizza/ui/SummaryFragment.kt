@@ -1,6 +1,8 @@
 package com.manishsputnikcorporation.pizza.ui
 
 import android.content.Intent
+import android.content.pm.PackageManager.ResolveInfoFlags
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +14,8 @@ import com.manishsputnikcorporation.pizza.R
 import com.manishsputnikcorporation.pizza.databinding.FragmentSummaryBinding
 import com.manishsputnikcorporation.pizza.ui.model.OrderViewModel
 import com.manishsputnikcorporation.pizza.utils.extensions.toFormattedPizzaList
-import com.manishsputnikcorporation.pizza.utils.extensions.toPizzasLabel
+import com.manishsputnikcorporation.pizza.utils.extensions.toPizzaTypesNumber
+import com.manishsputnikcorporation.pizza.utils.extensions.toPizzasNumber
 
 /**
  * [SummaryFragment] contains a summary of the order details with a button to share the order
@@ -49,11 +52,11 @@ class SummaryFragment : Fragment() {
     }
 
     /**
-     *
+     * Navigate to the first screen to restart an order.
      */
     fun cancelOrder() {
         sharedViewModel.resetOrder()
-        findNavController().navigate(R.id.action_pickupFragment_to_startFragment)
+        findNavController().navigate(R.id.action_summaryFragment_to_startFragment)
     }
 
     /**
@@ -63,10 +66,11 @@ class SummaryFragment : Fragment() {
         var orderSummary: String
         with(sharedViewModel) {
             val pizzas = pizzas.value
-            orderSummary = getString(
-                R.string.order_details,
-                name.value,
-                pizzas.toPizzasLabel(resources),
+            orderSummary = resources.getQuantityString(
+                R.plurals.order_details,
+                pizzas.toPizzaTypesNumber(),
+                name.value ?: "",
+                pizzas.toPizzasNumber(),
                 pizzas.toFormattedPizzaList(resources),
                 date.value,
                 price.value
@@ -78,6 +82,14 @@ class SummaryFragment : Fragment() {
             .putExtra(Intent.EXTRA_SUBJECT, getString(R.string.new_pizza_order))
             .putExtra(Intent.EXTRA_TEXT, orderSummary)
 
-        if (activity?.packageManager?.resolveActivity(intent, 0) != null) startActivity(intent)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (activity?.packageManager?.resolveActivity(
+                    intent,
+                    ResolveInfoFlags.of(0)
+                ) != null
+            ) startActivity(intent)
+        } else {
+            if (activity?.packageManager?.resolveActivity(intent, 0) != null) startActivity(intent)
+        }
     }
 }

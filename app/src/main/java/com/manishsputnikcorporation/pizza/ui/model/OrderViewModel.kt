@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.manishsputnikcorporation.pizza.domain.Pizza
+import com.manishsputnikcorporation.pizza.utils.extensions.toPizzasNumber
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -84,6 +85,7 @@ class OrderViewModel : ViewModel() {
         _pizzas.value = mutableListOf()
         _date.value = dateOptions[0]
         _price.value = 0.0
+        _name.value = ""
     }
 
     private fun updatePrice() {
@@ -92,7 +94,7 @@ class OrderViewModel : ViewModel() {
         _price.value = calculatedPrice
     }
 
-    private fun getSelectedPizzas() = _pizzas.value?.sumOf { it.quantity } ?: 0
+    private fun getSelectedPizzas() = _pizzas.value.toPizzasNumber()
 
     fun areAllPizzasSelected() = getSelectedPizzas() == getQuantityOrZero()
 
@@ -114,8 +116,7 @@ class OrderViewModel : ViewModel() {
                 if (currentPizza.quantity > 0) setPizza(pizzas, currentPizza, Operation.DEC)
                 else _status.value = Status(PizzaLimit.LOWER_LIMIT, pizzaName)
             }
-        }
-        else _status.value = Status(PizzaLimit.LOWER_LIMIT, pizzaName)
+        } else _status.value = Status(PizzaLimit.LOWER_LIMIT, pizzaName)
     }
 
     private fun setPizza(pizzas: List<Pizza>, currentPizza: Pizza, operation: Operation) {

@@ -5,26 +5,30 @@ import androidx.fragment.app.Fragment
 import com.manishsputnikcorporation.pizza.R
 import com.manishsputnikcorporation.pizza.domain.Pizza
 
-fun MutableList<Pizza>?.toPizzasLabel(resources: Resources): String {
-    val numberOfPizzas = this?.sumOf { it.quantity } ?: 0
-    return resources.getQuantityString(R.plurals.pizzas, numberOfPizzas, numberOfPizzas)
-}
+fun List<Pizza>?.toPizzasNumber() = this?.sumOf { it.quantity } ?: 0
+
+fun List<Pizza>?.filterPizza() = this?.filter { it.quantity > 0 }
+
+fun List<Pizza>?.toPizzaTypesNumber() = this?.count { it.quantity > 0 } ?: 0
 
 // TODO: enhance this method with default function extensions.
-fun MutableList<Pizza>?.toFormattedPizzaList(resources: Resources): String {
-    var pizzaFormattedList = ""
-    this.filterPizza()?.onEachIndexed { index, pizza ->
-        if (index != 0) pizzaFormattedList += "\n"
-        pizzaFormattedList += resources.getString(
-            R.string.pizza_list,
-            pizza.quantity,
-            pizza.name
-        )
+fun MutableList<Pizza>?.toFormattedPizzaList(resources: Resources): String =
+    when (toPizzaTypesNumber()) {
+        0 -> ""
+        1 -> this?.filterPizza()?.first()?.name ?: ""
+        else -> {
+            var pizzaFormattedList = ""
+            filterPizza()?.onEachIndexed { index, pizza ->
+                if (index != 0) pizzaFormattedList += "\n"
+                pizzaFormattedList += resources.getString(
+                    R.string.pizza_list,
+                    pizza.quantity,
+                    pizza.name
+                )
+            }
+            pizzaFormattedList
+        }
     }
-    return pizzaFormattedList
-}
-
-fun MutableList<Pizza>?.filterPizza() = this?.filter { it.quantity > 0 }
 
 // TODO: enhance this method with default function extensions.
 fun List<Int>.toPizzaList(fragment: Fragment, quantity: Int): MutableList<Pizza> {

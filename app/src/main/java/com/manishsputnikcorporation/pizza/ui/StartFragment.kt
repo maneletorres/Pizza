@@ -7,14 +7,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.manishsputnikcorporation.pizza.utils.extensions.toPizzaList
 import com.manishsputnikcorporation.pizza.R
 import com.manishsputnikcorporation.pizza.data.Pizzas
 import com.manishsputnikcorporation.pizza.databinding.FragmentStartBinding
 import com.manishsputnikcorporation.pizza.ui.model.OrderViewModel
+import com.manishsputnikcorporation.pizza.utils.extensions.toPizzaList
 
 /**
- * This is the first screen of the Pizza app. The user can choose hoy many pizzas to order.
+ * This is the first screen of the Pizza app. The user can choose how many pizzas to order.
  */
 class StartFragment : Fragment() {
 

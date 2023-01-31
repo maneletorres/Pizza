@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Text Appearance Subtitle1 style -->
-    <style name="TextAppearance.Pizza.Subtitle1"
-        parent="TextAppearance.MaterialComponents.Subtitle1">
+    <style name="TextAppearance.Pizza.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
         <item name="android:textSize">18sp</item>
     </style>
 
@@ -27,14 +26,6 @@
     <style name="Widget.Pizza.TextView.OrderSummary" parent="Widget.MaterialComponents.TextView">
         <item name="android:textAppearance">?attr/textAppearanceBody1</item>
         <item name="android:textStyle">bold</item>
-    </style>
-
-    <!-- Radio Button style -->
-    <style name="Widget.Pizza.CompoundButton.RadioButton"
-        parent="Widget.MaterialComponents.CompoundButton.RadioButton">
-        <item name="android:paddingEnd">@dimen/radio_button_padding</item>
-        <item name="android:paddingStart">@dimen/radio_button_padding</item>
-        <item name="android:textAppearance">?attr/textAppearanceBody1</item>
     </style>
 
     <!-- Divider style -->

@@ -3,10 +3,9 @@ package com.manishsputnikcorporation.pizza.utils.extensions
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.manishsputnikcorporation.pizza.R
 import com.manishsputnikcorporation.pizza.domain.Pizza
 import com.manishsputnikcorporation.pizza.ui.adapter.PizzaListAdapter
-import com.manishsputnikcorporation.pizza.utils.extensions.toPizzasLabel
-import com.manishsputnikcorporation.pizza.utils.extensions.toFormattedPizzaList
 
 @BindingAdapter("listData")
 fun bindRecyclerView(recyclerView: RecyclerView, data: List<Pizza>?) {
@@ -22,7 +21,7 @@ fun bindQuantity(txtView: TextView, pizzaQuantity: Int) {
 @BindingAdapter("pizzaLabel")
 fun bindPizzasLabel(txtView: TextView, pizzas: MutableList<Pizza>?) {
     with(txtView) {
-        text = pizzas.toPizzasLabel(resources)
+        text = resources.getQuantityString(R.plurals.pizzas, pizzas.toPizzasNumber())
     }
 }
 
