@@ -1,13 +1,11 @@
-name: "Android CI"
+name: Android CI
 
 on:
-  push:
-    branches: [ master, develop, epic/**, feature/** ]
   pull_request:
     branches: [ master, develop, epic/**, feature/** ]
 
 jobs:
-  build:
+  compile-and-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -20,3 +18,10 @@ jobs:
 
       - name: Build with Gradle
         run: ./gradlew build
+
+      - name: Run Unit Test
+        run: ./gradlew testDebugUnitTest
+
+      - name: Android Test report
+        uses: asadmansr/android-test-report-action@v1.2.0
+        if: ${{ always() }}
