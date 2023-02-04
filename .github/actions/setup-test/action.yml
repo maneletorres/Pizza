@@ -1,0 +1,12 @@
+name: "Android Testing CI"
+description: "Setup Android testing"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Unit Test
+      run: ./gradlew testDebugUnitTest
+
+    - name: Android Test report
+      uses: asadmansr/android-test-report-action@v1.2.0
+      if: ${{ always() }}

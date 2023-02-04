@@ -1,0 +1,15 @@
+name: Android Testing CI
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup JDK 17
+        uses: ./.github/actions/setup-java
+
+      - name: Unit Test
+        uses: ./.github/actions/setup-testing
