@@ -15,11 +15,8 @@ jobs:
         run: chmod +x gradlew
 
       - name: Unit Test
-        uses: ./.github/actions/setup-test
+        run: ./gradlew testDebugUnitTest
 
-#      - name: Unit Test
-#        run: ./gradlew testDebugUnitTest
-#
-#      - name: Android Test report
-#        uses: asadmansr/android-test-report-action@v1.2.0
-#        if: ${{ always() }}
+      - name: Android Test report
+        uses: asadmansr/android-test-report-action@v1.2.0
+        if: ${{ always() }}
