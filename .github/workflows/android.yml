@@ -1,8 +1,6 @@
 name: "Android CI"
 
 on:
-  push:
-    branches: [ master, develop, epic/**, feature/** ]
   pull_request:
     branches: [ master, develop, epic/**, feature/** ]
 
