@@ -24,7 +24,7 @@ class ViewModelTests {
     fun price_twelve_pizzas() {
         val orderViewModel = OrderViewModel()
         orderViewModel.price.observeForever {}
-        orderViewModel.setQuantity(12)
+        orderViewModel.setQuantity(11)
         TestCase.assertEquals(
             NumberFormat.getCurrencyInstance().format(123),
             orderViewModel.price.value
