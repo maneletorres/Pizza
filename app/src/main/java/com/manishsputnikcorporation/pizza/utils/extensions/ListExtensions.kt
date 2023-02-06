@@ -1,7 +1,7 @@
 package com.manishsputnikcorporation.pizza.utils.extensions
 
+import android.content.Context
 import android.content.res.Resources
-import androidx.fragment.app.Fragment
 import com.manishsputnikcorporation.pizza.R
 import com.manishsputnikcorporation.pizza.domain.Pizza
 
@@ -31,10 +31,10 @@ fun List<Pizza>.toFormattedPizzaList(resources: Resources): String =
     }
 
 // TODO: enhance this method with default function extensions.
-fun List<Int>.toPizzaList(fragment: Fragment, quantity: Int): MutableList<Pizza> {
+fun List<Int>.toPizzaList(context: Context, quantity: Int): MutableList<Pizza> {
     val pizzas = mutableListOf<Pizza>()
     forEachIndexed { index, pizzaResourceId ->
-        pizzas.add(Pizza(fragment.getString(pizzaResourceId), if (index == 0) quantity else 0))
+        pizzas.add(Pizza(context.getString(pizzaResourceId), if (index == 0) quantity else 0))
     }
     return pizzas
 }
