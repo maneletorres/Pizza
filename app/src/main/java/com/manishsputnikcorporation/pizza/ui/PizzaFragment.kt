@@ -59,16 +59,21 @@ class PizzaFragment : Fragment() {
     }
 
     private fun setupObservers() {
-        with (viewLifecycleOwner) {
+        with(viewLifecycleOwner) {
             lifecycleScope.launch {
                 lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                     sharedViewModel.event.collect { limitEvent ->
                         when (limitEvent) {
                             is OrderViewModel.Event.LimitEvent -> {
-                                showSnackBar(when (limitEvent.pizzaLimit) {
-                                    LOWER_LIMIT -> getString(R.string.lower_limit_reached, limitEvent.pizzaName)
-                                    UPPER_LIMIT -> getString(R.string.upper_limit_reached)
-                                })
+                                showSnackBar(
+                                    when (limitEvent.pizzaLimit) {
+                                        LOWER_LIMIT -> getString(
+                                            R.string.lower_limit_reached,
+                                            limitEvent.pizzaName
+                                        )
+                                        UPPER_LIMIT -> getString(R.string.upper_limit_reached)
+                                    }
+                                )
                             }
                         }
                     }

@@ -3,13 +3,14 @@ package com.manishsputnikcorporation.pizza.ui.model
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.manishsputnikcorporation.pizza.domain.Pizza
+import com.manishsputnikcorporation.pizza.ui.model.PizzaLimit.LOWER_LIMIT
+import com.manishsputnikcorporation.pizza.ui.model.PizzaLimit.UPPER_LIMIT
 import com.manishsputnikcorporation.pizza.utils.extensions.toPizzasNumber
-import java.text.SimpleDateFormat
-import com.manishsputnikcorporation.pizza.ui.model.PizzaLimit.*
 import com.manishsputnikcorporation.pizza.utils.extensions.transformToCurrency
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
 import java.util.*
 
 private const val PRICE_PER_PIZZA = 10.00
@@ -118,6 +119,7 @@ class OrderViewModel : ViewModel() {
             setPizzas(this)
         }
     }
+
     data class UiState(
         val quantity: Int = 0,
         val pizzas: List<Pizza> = mutableListOf(),
