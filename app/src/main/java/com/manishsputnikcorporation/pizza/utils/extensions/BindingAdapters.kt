@@ -26,8 +26,8 @@ fun bindPizzasLabel(txtView: TextView, pizzas: MutableList<Pizza>?) {
 }
 
 @BindingAdapter("pizzaFormatted")
-fun bindPizzas(txtView: TextView, pizzas: MutableList<Pizza>?) {
+fun bindPizzas(txtView: TextView, pizzas: List<Pizza>?) {
     with(txtView) {
-        text = pizzas.toFormattedPizzaList(resources)
+        text = pizzas?.toFormattedPizzaList(resources)
     }
 }

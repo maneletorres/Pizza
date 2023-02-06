@@ -31,7 +31,7 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:listData="@{ viewModel.pizzas }"
+                app:listData="@{ viewModel.uiState.pizzas }"
                 tools:itemCount="6"
                 tools:listitem="@layout/pizza_item" />
 
@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/side_margin"
                 android:layout_marginEnd="@dimen/side_margin"
-                android:text="@{@string/subtotal_price(viewModel.price)}"
+                android:text="@{@string/subtotal_price(viewModel.uiState.price)}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/divider"
                 tools:text="Subtotal $5.00" />

@@ -12,10 +12,10 @@ fun List<Pizza>?.filterPizza() = this?.filter { it.quantity > 0 }
 fun List<Pizza>?.toPizzaTypesNumber() = this?.count { it.quantity > 0 } ?: 0
 
 // TODO: enhance this method with default function extensions.
-fun MutableList<Pizza>?.toFormattedPizzaList(resources: Resources): String =
+fun List<Pizza>.toFormattedPizzaList(resources: Resources): String =
     when (toPizzaTypesNumber()) {
         0 -> ""
-        1 -> this?.filterPizza()?.first()?.name ?: ""
+        1 -> this.filterPizza()?.first()?.name ?: ""
         else -> {
             var pizzaFormattedList = ""
             filterPizza()?.onEachIndexed { index, pizza ->
