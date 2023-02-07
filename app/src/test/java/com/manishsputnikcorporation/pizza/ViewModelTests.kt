@@ -3,7 +3,7 @@ package com.manishsputnikcorporation.pizza
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.manishsputnikcorporation.pizza.domain.Pizza
 import com.manishsputnikcorporation.pizza.ui.model.OrderViewModel
-import com.manishsputnikcorporation.pizza.utils.extensions.transformToCurrency
+import com.manishsputnikcorporation.pizza.utils.extensions.getFormattedPrice
 import junit.framework.TestCase.assertEquals
 import org.junit.Before
 import org.junit.Rule
@@ -29,7 +29,7 @@ class ViewModelTests {
             assertEquals(mutableListOf<Pizza>(), pizzas)
             assertEquals(orderViewModel.dateOptions[0], date)
             assertEquals("", name)
-            assertEquals(transformToCurrency(0.0), price)
+            assertEquals(0.0.getFormattedPrice(), price)
         }
     }
 
@@ -89,7 +89,7 @@ class ViewModelTests {
             assertEquals(fakePizzas, pizzas)
             assertEquals(orderViewModel.dateOptions[0], date)
             assertEquals("", name)
-            assertEquals(transformToCurrency(63.0), price)
+            assertEquals(63.0.getFormattedPrice(), price)
         }
     }
 }

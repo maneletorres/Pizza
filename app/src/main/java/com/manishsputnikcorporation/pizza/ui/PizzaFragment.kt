@@ -16,8 +16,6 @@ import com.manishsputnikcorporation.pizza.ui.adapter.MinusButtonListener
 import com.manishsputnikcorporation.pizza.ui.adapter.PizzaListAdapter
 import com.manishsputnikcorporation.pizza.ui.adapter.PlusButtonListener
 import com.manishsputnikcorporation.pizza.ui.model.OrderViewModel
-import com.manishsputnikcorporation.pizza.ui.model.PizzaLimit.LOWER_LIMIT
-import com.manishsputnikcorporation.pizza.ui.model.PizzaLimit.UPPER_LIMIT
 import com.manishsputnikcorporation.pizza.utils.extensions.showSnackBar
 import kotlinx.coroutines.launch
 
@@ -65,15 +63,7 @@ class PizzaFragment : Fragment() {
                     sharedViewModel.event.collect { limitEvent ->
                         when (limitEvent) {
                             is OrderViewModel.Event.LimitEvent -> {
-                                showSnackBar(
-                                    when (limitEvent.pizzaLimit) {
-                                        LOWER_LIMIT -> getString(
-                                            R.string.lower_limit_reached,
-                                            limitEvent.pizzaName
-                                        )
-                                        UPPER_LIMIT -> getString(R.string.upper_limit_reached)
-                                    }
-                                )
+                                showSnackBar(getString(R.string.upper_limit_reached))
                             }
                         }
                     }

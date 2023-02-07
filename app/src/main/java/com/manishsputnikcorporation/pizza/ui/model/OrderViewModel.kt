@@ -3,10 +3,8 @@ package com.manishsputnikcorporation.pizza.ui.model
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.manishsputnikcorporation.pizza.domain.Pizza
-import com.manishsputnikcorporation.pizza.ui.model.PizzaLimit.LOWER_LIMIT
-import com.manishsputnikcorporation.pizza.ui.model.PizzaLimit.UPPER_LIMIT
+import com.manishsputnikcorporation.pizza.utils.extensions.getFormattedPrice
 import com.manishsputnikcorporation.pizza.utils.extensions.toPizzasNumber
-import com.manishsputnikcorporation.pizza.utils.extensions.transformToCurrency
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -15,10 +13,8 @@ import java.util.*
 
 private const val PRICE_PER_PIZZA = 10.00
 private const val PRICE_FOR_SAME_DAY_PICKUP = 3.00
-private const val PIZZAS_MIN = 0
 
 enum class Operation { INC, DEC }
-enum class PizzaLimit { LOWER_LIMIT, UPPER_LIMIT }
 class OrderViewModel : ViewModel() {
 
     private val _uiState = MutableStateFlow(UiState())
@@ -78,12 +74,10 @@ class OrderViewModel : ViewModel() {
         val uiState = _uiState.value
         var calculatedPrice = uiState.pizzas.toPizzasNumber() * PRICE_PER_PIZZA
         if (dateOptions[0] == uiState.date) calculatedPrice += PRICE_FOR_SAME_DAY_PICKUP
-        _uiState.update { it.copy(price = transformToCurrency(calculatedPrice)) }
+        _uiState.update { it.copy(price = calculatedPrice.getFormattedPrice()) }
     }
 
-    private fun getSelectedPizzas() = _uiState.value.pizzas.toPizzasNumber()
-
-    fun areAllPizzasSelected() = getSelectedPizzas() == getQuantityOrZero()
+    fun areAllPizzasSelected() = _uiState.value.pizzas.toPizzasNumber() == getQuantityOrZero()
 
     fun getQuantityOrZero() = _uiState.value.quantity
 
@@ -92,19 +86,14 @@ class OrderViewModel : ViewModel() {
             if (!areAllPizzasSelected()) {
                 val pizzas = _uiState.value.pizzas
                 setPizza(pizzas, pizzas.first { it.name == pizzaName }, Operation.INC)
-            } else _event.send(Event.LimitEvent(UPPER_LIMIT, pizzaName))
+            } else _event.send(Event.LimitEvent(pizzaName))
         }
     }
 
     fun decreasePizza(pizzaName: String) {
         viewModelScope.launch {
-            if (getSelectedPizzas() > PIZZAS_MIN) {
-                val pizzas = _uiState.value.pizzas
-                pizzas.first { it.name == pizzaName }.let { currentPizza ->
-                    if (currentPizza.quantity > 0) setPizza(pizzas, currentPizza, Operation.DEC)
-                    else _event.send(Event.LimitEvent(LOWER_LIMIT, pizzaName))
-                }
-            } else _event.send(Event.LimitEvent(LOWER_LIMIT, pizzaName))
+            val pizzas = _uiState.value.pizzas
+            setPizza(pizzas, pizzas.first { it.name == pizzaName }, Operation.DEC)
         }
     }
 
@@ -125,11 +114,11 @@ class OrderViewModel : ViewModel() {
         val pizzas: List<Pizza> = mutableListOf(),
         val date: String = "",
         val name: String = "",
-        val price: String = transformToCurrency()
+        val price: String = 0.0.getFormattedPrice()
     )
 
     sealed interface Event {
-        data class LimitEvent(val pizzaLimit: PizzaLimit, val pizzaName: String? = null) : Event
+        data class LimitEvent(val pizzaName: String? = null) : Event
     }
 
     // TODO:
