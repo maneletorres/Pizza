@@ -45,12 +45,13 @@ class PizzaListAdapter(
         fun bind(
             onMinusClickListener: MinusButtonListener,
             onPlusClickListener: PlusButtonListener,
-            Pizza: Pizza
+            pizza: Pizza
         ) {
             with(binding) {
-                this.pizza = Pizza
+                this.pizza = pizza
                 minusClickListener = onMinusClickListener
                 plusClickListener = onPlusClickListener
+                minusButton.isEnabled = pizza.quantity > 0
                 executePendingBindings()
             }
         }
@@ -58,13 +59,13 @@ class PizzaListAdapter(
 }
 
 // region ButtonListeners
-open class ButtonListener(open val clickListener: (PizzaName: String) -> Unit) {
-    fun onClick(PizzaName: String) = clickListener(PizzaName)
+open class ButtonListener(open val clickListener: (pizzaName: String) -> Unit) {
+    fun onClick(pizzaName: String) = clickListener(pizzaName)
 }
 
-class MinusButtonListener(override val clickListener: (PizzaName: String) -> Unit) :
+class MinusButtonListener(override val clickListener: (pizzaName: String) -> Unit) :
     ButtonListener(clickListener)
 
-class PlusButtonListener(override val clickListener: (PizzaName: String) -> Unit) :
+class PlusButtonListener(override val clickListener: (pizzaName: String) -> Unit) :
     ButtonListener(clickListener)
 // endregion

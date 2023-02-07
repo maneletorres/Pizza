@@ -46,7 +46,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/order_summary_margin"
-                    android:text="@{viewModel.quantity.toString()}"
+                    app:quantity="@{viewModel.uiState.quantity}"
                     tools:text="6 pizzas" />
 
                 <View
@@ -62,7 +62,7 @@
                     style="@style/Widget.Pizza.TextView.Label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:pizzaLabel="@{ viewModel.pizzas }"
+                    app:pizzaLabel="@{ viewModel.uiState.pizzas }"
                     tools:text="@string/pizza" />
 
                 <TextView
@@ -71,7 +71,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/order_summary_margin"
-                    app:pizzaFormatted="@{ viewModel.pizzas }"
+                    app:pizzaFormatted="@{ viewModel.uiState.pizzas }"
                     tools:text="Chocolate" />
 
                 <View
@@ -95,7 +95,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/order_summary_margin"
-                    android:text="@{viewModel.date}"
+                    android:text="@{viewModel.uiState.date}"
                     tools:text="Sunday" />
 
                 <View
@@ -126,7 +126,7 @@
                         android:hint="@string/name_hint"
                         android:inputType="text"
                         android:onTextChanged="@{(text, start, before, count) -> viewModel.setName(text.toString())}"
-                        android:text="@{ viewModel.name }"
+                        android:text="@{ viewModel.uiState.name }"
                         tools:text="Manuel Espinosa Torres" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -146,7 +146,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:layout_marginTop="@dimen/side_margin"
-                    android:text="@{@string/total_price(viewModel.price)}"
+                    android:text="@{@string/total_price(viewModel.uiState.price)}"
                     tools:text="Total $5.00" />
 
             </LinearLayout>

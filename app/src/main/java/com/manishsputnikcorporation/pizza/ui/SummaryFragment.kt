@@ -64,16 +64,15 @@ class SummaryFragment : Fragment() {
      */
     fun sendOrder() {
         var orderSummary: String
-        with(sharedViewModel) {
-            val pizzas = pizzas.value
+        with(sharedViewModel.uiState.value) {
             orderSummary = resources.getQuantityString(
                 R.plurals.order_details,
                 pizzas.toPizzaTypesNumber(),
-                name.value ?: "",
+                name,
                 pizzas.toPizzasNumber(),
                 pizzas.toFormattedPizzaList(resources),
-                date.value,
-                price.value
+                date,
+                price
             )
         }
 

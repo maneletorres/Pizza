@@ -48,7 +48,8 @@ class StartFragment : Fragment() {
         with(sharedViewModel) {
             val lastQuantitySelected = sharedViewModel.getQuantityOrZero()
             setQuantity(quantity)
-            val defaultPizzas = Pizzas.pizzas.toPizzaList(this@StartFragment, quantity)
+            val defaultPizzas =
+                Pizzas.pizzas.toPizzaList(this@StartFragment.requireContext(), quantity)
             if (hasNoPizzas() || quantity != lastQuantitySelected) setPizzas(defaultPizzas)
         }
 
