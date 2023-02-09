@@ -9,25 +9,21 @@ import com.manishsputnikcorporation.pizza.ui.adapter.PizzaListAdapter
 
 @BindingAdapter("listData")
 fun bindRecyclerView(recyclerView: RecyclerView, data: List<Pizza>?) {
-    val adapter = recyclerView.adapter as PizzaListAdapter
-    adapter.submitList(data)
+  val adapter = recyclerView.adapter as PizzaListAdapter
+  adapter.submitList(data)
 }
 
 @BindingAdapter("quantity")
 fun bindQuantity(txtView: TextView, pizzaQuantity: Int) {
-    txtView.text = pizzaQuantity.toString()
+  txtView.text = pizzaQuantity.toString()
 }
 
 @BindingAdapter("pizzaLabel")
 fun bindPizzasLabel(txtView: TextView, pizzas: MutableList<Pizza>?) {
-    with(txtView) {
-        text = resources.getQuantityString(R.plurals.pizzas, pizzas.toPizzasNumber())
-    }
+  with(txtView) { text = resources.getQuantityString(R.plurals.pizzas, pizzas.toPizzasNumber()) }
 }
 
 @BindingAdapter("pizzaFormatted")
 fun bindPizzas(txtView: TextView, pizzas: List<Pizza>?) {
-    with(txtView) {
-        text = pizzas?.toFormattedPizzaList(resources)
-    }
+  with(txtView) { text = pizzas?.toFormattedPizzaList(resources) }
 }

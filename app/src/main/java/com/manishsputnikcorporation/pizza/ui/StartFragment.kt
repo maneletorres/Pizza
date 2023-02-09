@@ -13,46 +13,42 @@ import com.manishsputnikcorporation.pizza.databinding.FragmentStartBinding
 import com.manishsputnikcorporation.pizza.ui.model.OrderViewModel
 import com.manishsputnikcorporation.pizza.utils.extensions.toPizzaList
 
-/**
- * This is the first screen of the Pizza app. The user can choose how many pizzas to order.
- */
+/** This is the first screen of the Pizza app. The user can choose how many pizzas to order. */
 class StartFragment : Fragment() {
 
-    private val sharedViewModel: OrderViewModel by activityViewModels()
+  private val sharedViewModel: OrderViewModel by activityViewModels()
 
-    private var binding: FragmentStartBinding? = null
+  private var binding: FragmentStartBinding? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        val fragmentStartBinding = FragmentStartBinding.inflate(inflater, container, false)
-        binding = fragmentStartBinding
-        return fragmentStartBinding.root
+  override fun onCreateView(
+      inflater: LayoutInflater,
+      container: ViewGroup?,
+      savedInstanceState: Bundle?
+  ): View {
+    val fragmentStartBinding = FragmentStartBinding.inflate(inflater, container, false)
+    binding = fragmentStartBinding
+    return fragmentStartBinding.root
+  }
+
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
+    binding?.startFragment = this
+  }
+
+  override fun onDestroyView() {
+    super.onDestroyView()
+    binding = null
+  }
+
+  /** Start an order with the desired quantity of pizzas and navigate to the next screen. */
+  fun orderPizza(quantity: Int) {
+    with(sharedViewModel) {
+      val lastQuantitySelected = sharedViewModel.getQuantityOrZero()
+      setQuantity(quantity)
+      val defaultPizzas = Pizzas.pizzas.toPizzaList(this@StartFragment.requireContext(), quantity)
+      if (hasNoPizzas() || quantity != lastQuantitySelected) setPizzas(defaultPizzas)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        binding?.startFragment = this
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        binding = null
-    }
-
-    /**
-     * Start an order with the desired quantity of pizzas and navigate to the next screen.
-     */
-    fun orderPizza(quantity: Int) {
-        with(sharedViewModel) {
-            val lastQuantitySelected = sharedViewModel.getQuantityOrZero()
-            setQuantity(quantity)
-            val defaultPizzas =
-                Pizzas.pizzas.toPizzaList(this@StartFragment.requireContext(), quantity)
-            if (hasNoPizzas() || quantity != lastQuantitySelected) setPizzas(defaultPizzas)
-        }
-
-        findNavController().navigate(R.id.action_startFragment_to_pizzaFragment)
-    }
+    findNavController().navigate(R.id.action_startFragment_to_pizzaFragment)
+  }
 }
