@@ -11,51 +11,46 @@ import com.manishsputnikcorporation.pizza.R
 import com.manishsputnikcorporation.pizza.databinding.FragmentPickupBinding
 import com.manishsputnikcorporation.pizza.ui.model.OrderViewModel
 
-/**
- * [PickupFragment] allows the user to choose a pickup date for the pizza order.
- */
+/** [PickupFragment] allows the user to choose a pickup date for the pizza order. */
 class PickupFragment : Fragment() {
 
-    private val sharedViewModel: OrderViewModel by activityViewModels()
+  private val sharedViewModel: OrderViewModel by activityViewModels()
 
-    private var binding: FragmentPickupBinding? = null
+  private var binding: FragmentPickupBinding? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        val fragmentStartBinding = FragmentPickupBinding.inflate(inflater, container, false)
-        binding = fragmentStartBinding
-        return fragmentStartBinding.root
+  override fun onCreateView(
+      inflater: LayoutInflater,
+      container: ViewGroup?,
+      savedInstanceState: Bundle?
+  ): View {
+    val fragmentStartBinding = FragmentPickupBinding.inflate(inflater, container, false)
+    binding = fragmentStartBinding
+    return fragmentStartBinding.root
+  }
+
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
+
+    binding?.apply {
+      lifecycleOwner = viewLifecycleOwner
+      viewModel = sharedViewModel
+      pickupFragment = this@PickupFragment
     }
+  }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+  override fun onDestroyView() {
+    super.onDestroyView()
+    binding = null
+  }
 
-        binding?.apply {
-            lifecycleOwner = viewLifecycleOwner
-            viewModel = sharedViewModel
-            pickupFragment = this@PickupFragment
-        }
-    }
+  /** Navigate to the first screen to restart an order. */
+  fun cancelOrder() {
+    sharedViewModel.resetOrder()
+    findNavController().navigate(R.id.action_pickupFragment_to_startFragment)
+  }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        binding = null
-    }
-
-    /**
-     * Navigate to the first screen to restart an order.
-     */
-    fun cancelOrder() {
-        sharedViewModel.resetOrder()
-        findNavController().navigate(R.id.action_pickupFragment_to_startFragment)
-    }
-
-    /**
-     * Navigate to the next screen to see the order summary.
-     */
-    fun goToNextScreen() {
-        findNavController().navigate(R.id.action_pickupFragment_to_summaryFragment)
-    }
+  /** Navigate to the next screen to see the order summary. */
+  fun goToNextScreen() {
+    findNavController().navigate(R.id.action_pickupFragment_to_summaryFragment)
+  }
 }
