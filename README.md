@@ -18,7 +18,7 @@ Pizza is a simple pizza delivery application built entirely in Kotlin for Androi
 - Architecture components:
   - Data Binding
   - Lifecycles
-  - <u>LiveData</u>
+  - ~~LiveData~~
   - Navigation
   - ViewModel
 - Other libraries
