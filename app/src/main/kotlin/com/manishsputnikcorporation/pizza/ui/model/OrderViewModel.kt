@@ -115,11 +115,11 @@ class OrderViewModel : ViewModel() {
   }
 
   data class UiState(
-    val quantity: Int = 0,
-    val pizzas: List<Pizza> = mutableListOf(),
-    val date: String = "",
-    val name: String = "",
-    val price: String = 0.0.getFormattedPrice()
+      val quantity: Int = 0,
+      val pizzas: List<Pizza> = mutableListOf(),
+      val date: String = "",
+      val name: String = "",
+      val price: String = 0.0.getFormattedPrice()
   )
 
   sealed interface Event {
