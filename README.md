@@ -27,13 +27,15 @@ Pizza is a simple pizza delivery application built entirely in Kotlin for Androi
     - Flow:
       - StateFlow
 - Testing
+- Others:
+  - ktfmt
 
 ## Next steps
 - Apply 'versions.toml' file as dependency manager
 - Apply Version Catalog Update plugin
-- Migration to Jetpack Compose
 - Add a Splash Screen
 - Add JaCoCo for code coverage
+- Migration to Jetpack Compose
 - Others...
 
 ## Screenshots
