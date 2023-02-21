@@ -1,0 +1,32 @@
+[versions]
+navigation-ui-ktx-version = "2.5.3"
+
+# Testing library versions:
+junit-version = "4.13.2"
+androidx-arch-core-testing-version = "2.1.0"
+
+[libraries]
+# Navigation libraries:
+androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigation-ui-ktx-version" }
+androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigation-ui-ktx-version" }
+
+# Testing libraries:
+junit = { module = "junit:junit", version.ref = "junit-version" }
+androidx-arch-core-testing = { module = "androidx.arch.core:core-testing", version.ref = "androidx-arch-core-testing-version" }
+
+[bundles]
+navigation = [
+    "androidx-navigation-fragment-ktx",
+    "androidx-navigation-ui-ktx",
+]
+testing = [
+    "androidx-arch-core-testing",
+    "junit",
+]
+
+[plugins]
+com-android-application = "com.android.application:7.4.1"
+com-android-library = "com.android.library:7.4.1"
+org-jetbrains-kotlin-android = "org.jetbrains.kotlin.android:1.8.10"
+com-github-ben-manes-versions = "com.github.ben-manes.versions:0.45.0"
+nl-littlerobots-version-catalog-update = "nl.littlerobots.version-catalog-update:0.7.0"
