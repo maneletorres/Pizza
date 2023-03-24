@@ -3,7 +3,7 @@ navigation-ui-ktx-version = "2.5.3"
 
 # Testing library versions:
 junit-version = "4.13.2"
-androidx-arch-core-testing-version = "2.1.0"
+androidx-arch-core-testing-version = "2.2.0"
 
 [libraries]
 # Navigation libraries:
@@ -25,8 +25,8 @@ testing = [
 ]
 
 [plugins]
-com-android-application = "com.android.application:7.4.1"
-com-android-library = "com.android.library:7.4.1"
+com-android-application = "com.android.application:7.4.2"
+com-android-library = "com.android.library:7.4.2"
 org-jetbrains-kotlin-android = "org.jetbrains.kotlin.android:1.8.10"
-com-github-ben-manes-versions = "com.github.ben-manes.versions:0.45.0"
-nl-littlerobots-version-catalog-update = "nl.littlerobots.version-catalog-update:0.7.0"
+com-github-ben-manes-versions = "com.github.ben-manes.versions:0.46.0"
+nl-littlerobots-version-catalog-update = "nl.littlerobots.version-catalog-update:0.8.0"
