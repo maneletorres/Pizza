@@ -25,8 +25,8 @@ testing = [
 ]
 
 [plugins]
-com-android-application = "com.android.application:8.0.0"
-com-android-library = "com.android.library:8.0.0"
-org-jetbrains-kotlin-android = "org.jetbrains.kotlin.android:1.8.10"
+com-android-application = "com.android.application:8.0.1"
+com-android-library = "com.android.library:8.0.1"
+org-jetbrains-kotlin-android = "org.jetbrains.kotlin.android:1.8.21"
 com-github-ben-manes-versions = "com.github.ben-manes.versions:0.46.0"
 nl-littlerobots-version-catalog-update = "nl.littlerobots.version-catalog-update:0.8.0"
